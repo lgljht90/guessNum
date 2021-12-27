@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		#panel{
+			transform: translate(-50%, -50%);
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			padding: 20px;
+			resize: both;
+			overflow: auto;
+			width: 25%;
+			background-color: blueviolet;
+		}
+		#guess:hover {
+			background-color: darkred;
+		}
+		#guess {
+			background-color: #4CAF50;
+			font-size: 32px;
+			margin: 4px 2px;
+			transition-duration: 0.4s;
+			cursor: pointer;
+			padding: 15px 32px;
+		}
+		#table{
+			border: 3px solid lightcyan;
+			font-family: fantasy;
+			color: yellow;
+		}
+		body{
+			background-image: url('bg.jpg');
+		}
+	</style>
+</head>
+<script type="text/javascript">
+	var ran=Math.floor((Math.random()*100)+1);
+	document.write(ran);
+	var min=1
+	var max=100
+	function show(){
+		guess=document.getElementById("num").value;
+		if(guess==ran){
+			alert("bingo");
+			location.reload();
+		}else if(guess<ran&&guess>min){
+			min=guess;
+		}else if(guess>ran&&guess<max){
+			max=guess;
+		}else if(guess==min|guess==max){
+			min=min
+			max=max
+		}
+		document.getElementById("table").appendChild(document.createElement("tr").appendChild(document.createElement("td").appendChild(document.createTextNode(min+"~"+max))));
+			document.getElementById("table").appendChild(document.createElement("br"));
+	}
+</script>
+<body>
+	<div id=panel>
+		<h2>Guess</h2>
+		Your guess(1~100)<br>
+		<input type="number" id="num"><br>
+		<button id="guess" onclick="show()">guess</button><br>
+		<table id="table">
+			<tr><td>Result</td></tr>
+		</table>
+	</div>
+	
+
+</body>
+</html>
